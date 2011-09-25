@@ -16,3 +16,12 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
+
+necessary_rmq_plugins.each { |plugin|
+  remote_file "/usr/lib/rabbitmq/lib/rabbitmq_server-#{ node[:rabbitmq_management][:version] }/plugins/#{ plugin }" do
+    source "http://www.rabbitmq.com/releases/plugins/v#{ node[:rabbitmq_management][:version] }/#{ plugin }"
+    owner "rabbitmq"
+    group "rabbitmq"
+    action :create_if_missing
+  end
+}
