@@ -23,5 +23,6 @@ necessary_rmq_plugins.each { |plugin|
     owner "rabbitmq"
     group "rabbitmq"
     action :create_if_missing
+    notifies :restart, "service[rabbitmq-server]"
   end
 }

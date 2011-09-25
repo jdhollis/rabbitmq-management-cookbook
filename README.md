@@ -1,6 +1,6 @@
 # Description
 
-Installs the rabbitmq-management plugin and dependencies.
+Installs the rabbitmq-management plugin and dependencies and tells rabbitmq-server to restart.
 
 # Requirements
 
@@ -12,13 +12,28 @@ Platform:
 
 Any platform supported by the Opscode rabbitmq cookbook.
 
+Services:
+
+* rabbitmq-server
+
+The rabbitmq cookbook (as of version 1.3.0) does not provide a service definition for rabbitmq-server, so you will need to add something like this to it:
+
+```ruby
+service "rabbitmq-server" do
+  stop_command "/usr/sbin/rabbitmqctl stop"
+  action [:enable, :start]
+end
+```
+
+This should become unnecessary once [COOK-585](http://tickets.opscode.com/browse/COOK-585) is closed.
+
 # Attributes
 
 * `rabbitmq_management[:version]` - target version of RabbitMQ
 
 # Usage
 
-Add 'recipe[rabbitmq-management]' to a run list.
+Add `recipe[rabbitmq-management]` to a run list.
 
 # License & Author
 
