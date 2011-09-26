@@ -18,8 +18,8 @@
 #
 
 necessary_rmq_plugins.each { |plugin|
-  remote_file "/usr/lib/rabbitmq/lib/rabbitmq_server-#{ node[:rabbitmq_management][:version] }/plugins/#{ plugin }" do
-    source "http://www.rabbitmq.com/releases/plugins/v#{ node[:rabbitmq_management][:version] }/#{ plugin }"
+  remote_file "/usr/lib/rabbitmq/lib/rabbitmq_server-2.6.1/plugins/#{ plugin }" do
+    source "http://www.rabbitmq.com/releases/plugins/v2.6.1/#{ plugin }"
     owner "rabbitmq"
     group "rabbitmq"
     action :create_if_missing

@@ -14,7 +14,7 @@ Any platform supported by the Opscode rabbitmq cookbook.
 
 Services:
 
-* rabbitmq-server
+* rabbitmq-server v2.6.1
 
 The rabbitmq cookbook (as of version 1.3.0) does not provide a service definition for rabbitmq-server, so you will need to add something like this to it:
 
@@ -26,10 +26,6 @@ end
 ```
 
 This should become unnecessary once [COOK-585](http://tickets.opscode.com/browse/COOK-585) is closed.
-
-# Attributes
-
-* `rabbitmq_management[:version]` - target version of RabbitMQ
 
 # Usage
 
