@@ -17,12 +17,9 @@
 # limitations under the License.
 #
 
-necessary_rmq_plugins.each { |plugin|
-  remote_file "/usr/lib/rabbitmq/lib/rabbitmq_server-2.6.1/plugins/#{ plugin }" do
-    source "http://www.rabbitmq.com/releases/plugins/v2.6.1/#{ plugin }"
-    owner "rabbitmq"
-    group "rabbitmq"
-    action :create_if_missing
-    notifies :restart, "service[rabbitmq-server]"
-  end
-}
+execute "Enable rabbitmq_management" do
+  command "rabbitmq-plugins enable rabbitmq_management"
+  user 0
+  action :run
+  notifies :restart, "service[rabbitmq-server]"
+end
