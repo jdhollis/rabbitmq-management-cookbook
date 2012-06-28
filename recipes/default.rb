@@ -21,5 +21,6 @@ execute "Enable rabbitmq_management" do
   command "rabbitmq-plugins enable rabbitmq_management"
   user 0
   action :run
+  not_if "rabbitmq-plugins list -e | grep ' rabbitmq_management '"
   notifies :restart, "service[rabbitmq-server]"
 end
